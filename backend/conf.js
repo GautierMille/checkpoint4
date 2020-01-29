@@ -2,9 +2,7 @@ require("dotenv").config();
 
 const mysql = require("mysql");
 
-let config = {
-  backendPort: process.env.BACKEND_PORT || "4200",
-};
+let backendPort = process.env.BACKEND_PORT || "5050"
 
 const db = mysql.createPool({
   connectionLimit: 10,
@@ -15,6 +13,6 @@ const db = mysql.createPool({
 });
 
 module.exports = {
-  config,
+  backendPort,
   db
 };
