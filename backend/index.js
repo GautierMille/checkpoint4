@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-//const passport = require("passport");
+const passport = require("passport");
 const { backendPort, db } = require("./conf");
 const bodyParser = require("body-parser");
 
@@ -12,7 +12,7 @@ app.use(
   })
 );
 app.use(cors());
-// app.use(passport.initialize());
+app.use(passport.initialize());
 
 app.get("/packages", (req, res) => {
   db.query(
