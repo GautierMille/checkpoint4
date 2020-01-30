@@ -10,7 +10,7 @@ class Home extends React.Component {
             <View style={styles.container}>
                 <Text>Voici les packages</Text>
                 <View style={{ flex: 1 }}>
-                    <HomeClass style={styles.container} />
+                    <HomeClass style={styles.container} navigation={this.props.navigation} />
                 </View>
             </View>
         );
