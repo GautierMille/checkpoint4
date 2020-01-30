@@ -68,6 +68,19 @@ app.put("/package/:id/vote", (req, res) => {
     })
 })
 
+app.get("/package/:id/global", (req, res) => {
+  const packageId = parseInt(req.params.id);
+  db.query(
+    "SELECT SUM(globale) AS globale FROM vote where package_id = ?", packageId,
+    (err, results) => {
+      if (err) {
+        return res.status(500).send("Sorry, we encountered an internal error.");
+      } else {
+        return res.status(200).json(results);
+      }
+    }
+  );
+});
 
 app.listen(backendPort, (err) => {
   if (err) {
