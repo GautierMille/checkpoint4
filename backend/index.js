@@ -17,7 +17,8 @@ app.use("/auth", require("./auth"));
 
 app.get("/packages", (req, res) => {
   db.query(
-    "SELECT * FROM package",
+    "SELECT package.id as id, package.name,package.npm_link, package.github_link, package.info, main_category.name AS category_name FROM package JOIN main_category on package.main_category_id =main_category.id",
+    // "SELECT * FROM package",
     (err, results) => {
       if (err) {
         return res.status(500).send("Sorry, we encountered an internal error.");
