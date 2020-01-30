@@ -3,20 +3,20 @@ const LocalStrategy = require("passport-local").Strategy;
 const { Strategy: JWTStrategy, ExtractJwt } = require("passport-jwt");
 const bcrypt = require("bcrypt");
 const {
-  CONFIG: { jwtSecret },
+  jwtSecret,
   db
 } = require("./conf");
 
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "pseudo",
+      usernameField: "email",
       passwordField: "password"
     },
-    (formPseudo, formPassword, done) => {
+    (formEmail, formPassword, done) => {
       db.query(
         "SELECT email, password FROM user WHERE email=?",
-        [formPseudo],
+        [formEmail],
         (err, results) => {
           if (err) {
             return done(err);
@@ -24,7 +24,7 @@ passport.use(
           let user;
           if (results && results[0])
             user = JSON.parse(JSON.stringify(results[0]));
-          if (!user || !user.pseudo)
+          if (!user || !user.email)
             return done(null, false, { message: "User not found!" });
           bcrypt.compare(formPassword, user.password, (errBcrypt, result) => {
             if (errBcrypt) return done(errBcrypt);

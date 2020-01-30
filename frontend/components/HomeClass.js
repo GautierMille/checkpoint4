@@ -10,7 +10,7 @@ class HomeClass extends React.Component {
             packages: []
         }
     }
-
+    static navigateOptions = { title: 'HomeClass' }
     componentDidMount() {
         axios.get(`http://192.168.1.150:5050/packages`).then(({ data }) => {
             this.setState({ packages: data })

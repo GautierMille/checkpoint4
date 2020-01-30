@@ -13,6 +13,7 @@ app.use(
 );
 app.use(cors());
 app.use(passport.initialize());
+app.use("/auth", require("./auth"));
 
 app.get("/packages", (req, res) => {
   db.query(

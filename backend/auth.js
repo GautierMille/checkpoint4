@@ -14,9 +14,11 @@ router.post("/signup", (req, res) => {
     const newUser = formData;
     db.query("INSERT INTO user SET ?", [newUser], (err, results) => {
       if (err) {
+        console.log(err)
         return res.status(400).send(err.sqlMessage);
       }
       newUser.password = undefined;
+      console.log("ok")
       return res.status(201).send({
         user: newUser,
         token: jwt.sign(JSON.stringify(newUser), jwtSecret)
@@ -25,9 +27,12 @@ router.post("/signup", (req, res) => {
   });
 });
 
-router.post("/login", (req, res) => {
+router.post("/log", (req, res) => {
   passport.authenticate("local", { session: false }, (err, user, info) => {
     if (err || !user) {
+      console.log(user,
+        err,
+        info)
       // User not logged in (inexistant or tech error)
       return res.status(401).json({
         message: "Failed auth!",
