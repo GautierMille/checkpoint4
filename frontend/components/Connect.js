@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, TextInput, View, Button, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, TextInput, View, Button, TouchableOpacity, Text, Image } from 'react-native';
 import axios from 'axios';
 import { connect } from 'react-redux'
 
@@ -15,7 +15,7 @@ class Connect extends React.Component {
     }
     connectAccount() {
         axios.post(`http://192.168.1.150:5050/auth/log`, this.state).then(response => {
-            this.props.getId(response.data.user.id)
+            this.props.getId(response.data.user)
             this.state.navigate('Home')
         })
     }
@@ -26,23 +26,32 @@ class Connect extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                <View style={{ flex: 0.3 }}>
+                <View style={{ alignItems: "center", marginTop: 30, marginBottom: 40 }}>
+                    <Image source={require("../assets/react.png")} style={{ height: 200, width: 200 }} />
+                    <Text style={{ color: "white", fontSize: 32 }}>React Choice</Text>
+                </View>
+                <View style={{ marginTop: 20 }}>
                     <TextInput
                         placeholder='email'
                         onChangeText={(text) => this.setState({ email: text })}
+                        style={{ backgroundColor: "white", color: "black", marginLeft: 50, marginRight: 50, paddingLeft: 10 }}
                     />
                 </View>
-                <View style={{ flex: 0.3 }}>
+                <View style={{ marginTop: 20 }}>
                     <TextInput
                         placeholder='password'
                         onChangeText={(text) => this.setState({ password: text })}
                         secureTextEntry={true}
+                        style={{ backgroundColor: "white", color: "black", marginLeft: 50, marginRight: 50, paddingLeft: 10 }}
                     />
                 </View>
-                <Button onPress={() => this.connectAccount()} title='Connect'></Button>
 
-                <TouchableOpacity onPress={() => this.goToCreateAccount()} style={{ flex: 1, backgroundColor: "black", color: "white", alignItems: "center", justifyContent: "center" }} >
-                    <Text style={{ flex: 1, color: "white" }}>Create an account</Text>
+                <TouchableOpacity onPress={() => this.connectAccount()} title='Connect' style={{ marginTop: 20, backgroundColor: "#61DAFB", padding: 20, alignItems: "center" }}>
+                    <Text style={{ color: "black", fontSize: 18 }}>Connect</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => this.goToCreateAccount()} style={{ alignItems: "center", marginTop: 40, backgroundColor: "#61DAFB", padding: 20 }} >
+                    <Text style={{ color: "black", fontSize: 18 }}>Create an account</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -61,7 +70,7 @@ export default connect(null, mapDispatchToProps)(Connect)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'black',
         alignSelf: 'stretch',
     },
 });

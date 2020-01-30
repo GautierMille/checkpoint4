@@ -16,7 +16,7 @@ class PackageView extends React.Component {
         return (
             <View style={{ flexDirection: "row", flex: 1 }} >
                 <TouchableOpacity style={{ justifyContent: "flex-start", flex: 1, flexDirection: "column" }} onPress={() => displayDetails(this.props)} >
-                    <Text style={{ fontSize: 20, fontWeight: 'bold', alignSelf: 'stretch', }}>Nom: {this.props.pack.id}</Text>
+                    <Text style={{ fontSize: 20, fontWeight: 'bold', alignSelf: 'stretch', }}>Nom: {this.props.pack.name}</Text>
                     <Text style={{ fontSize: 20, fontWeight: 'bold', alignSelf: 'stretch', }}>Category: {this.props.pack.main_category_id}</Text>
                 </TouchableOpacity>
                 <View style={{ justifyContent: "flex-end" }}>

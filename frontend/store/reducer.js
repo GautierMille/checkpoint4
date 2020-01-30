@@ -7,7 +7,8 @@ const reducer = (state = initialState, action) => {
     const newState = { ...state };
     switch (action.type) {
         case "LOG":
-            newState.user_id = action.value;
+            newState.user_id = action.value.id;
+            newState.pseudo = action.value.pseudo;
             return newState;
         default:
             return newState;

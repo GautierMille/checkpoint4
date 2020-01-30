@@ -3,8 +3,6 @@ import { View, TextInput, Button, Text, Image, ScrollView, TouchableOpacity, Tou
 import axios from 'axios';
 import { connect } from 'react-redux'
 
-
-
 class Vote extends React.Component {
     constructor(props) {
         super(props);

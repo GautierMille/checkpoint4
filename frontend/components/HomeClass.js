@@ -25,7 +25,7 @@ class HomeClass extends React.Component {
     render() {
         return (
             <ScrollView
-                style={{ borderWidth: 10, borderColor: "black", borderStyle: "solid", alignSelf: 'stretch', }}
+                style={{ backgroungColor: "white", alignSelf: 'stretch', marginLeft: 10, marginRight: 10, marginTop: 10 }}
             >
                 {this.state.packages.map(pack => <View style={{ flex: 1, marginBottom: 10, padding: 10, borderColor: "black", borderWidth: 2, borderStyle: "solid", alignSelf: 'stretch' }}><PackageView displayDetails={this.displayDetails} pack={pack} /></View>)}
             </ScrollView>
