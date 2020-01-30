@@ -15,7 +15,7 @@ passport.use(
     },
     (formEmail, formPassword, done) => {
       db.query(
-        "SELECT email, password FROM user WHERE email=?",
+        "SELECT email, password, id FROM user WHERE email=?",
         [formEmail],
         (err, results) => {
           if (err) {

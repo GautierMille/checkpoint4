@@ -9,10 +9,6 @@ class PackageView extends React.Component {
             navigate: this.props.navigation
         }
     }
-    // componentDidMount() {
-    //     console.log(this.props)
-    // }
-
 
 
     render() {
@@ -24,7 +20,7 @@ class PackageView extends React.Component {
                     <Text style={{ fontSize: 20, fontWeight: 'bold', alignSelf: 'stretch', }}>Category: {this.props.pack.main_category_id}</Text>
                 </TouchableOpacity>
                 <View style={{ justifyContent: "flex-end" }}>
-                    <Vote />
+                    <Vote id={this.props.pack.id} />
                 </View>
             </View >
         )

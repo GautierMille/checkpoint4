@@ -15,7 +15,7 @@ class HomeClass extends React.Component {
         axios.get(`http://192.168.1.150:5050/packages`).then(({ data }) => {
             this.setState({ packages: data })
         })
-            .catch((err) => console.log(err));
+
     }
 
     displayDetails = (packInfo) => {

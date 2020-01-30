@@ -28,7 +28,7 @@ app.get("/packages", (req, res) => {
   );
 });
 
-app.patch("/package/:id/vote", (req, res) => {
+app.put("/package/:id/vote", (req, res) => {
   const packageId = parseInt(req.params.id);
   const formData = req.body;
   const userId = formData.userId;
@@ -44,9 +44,10 @@ app.patch("/package/:id/vote", (req, res) => {
           [userVote, parseInt(results[0].id)],
           (err, results) => {
             if (err) {
-              res.status(500).send("Erreur lors de la sauvegarde du vote" + err);
+              // res.status(500).send("Erreur lors de la sauvegarde du vote" + err);
+              res.status(500).send(console.log(err))
             } else {
-              res.sendStatus(201).send("ici");
+              res.sendStatus(201);
             }
           })
       }
@@ -56,9 +57,10 @@ app.patch("/package/:id/vote", (req, res) => {
           [userId, packageId, userVote],
           (err, results) => {
             if (err) {
-              res.status(500).send("Erreur lors de la sauvegarde du vote" + err);
+              // res.status(500).send("Erreur lors de la sauvegarde du vote" + err);
+              res.status(500).send(console.log(err))
             } else {
-              res.sendStatus(201).send("la");
+              res.sendStatus(201);
             }
           }
         )

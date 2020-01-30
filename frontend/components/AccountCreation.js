@@ -9,18 +9,17 @@ class AccountCreation extends React.Component {
             email: null,
             password: null,
             pseudo: null,
-            navigate: this.props.navigation.navigate
+            navigate: this.props.navigation.navigate,
+            user_id: null
         }
     }
 
     createAccount() {
         axios.post(`http://192.168.1.150:5050/auth/signup`, { email: this.state.email, password: this.state.password })
             .then(response => {
-                console.log("ok")
-                this.state.navigate('Home')
-
+                this.setState({ user_id: response.id })
+                this.state.navigate('Home', { user_id: this.state.user_id })
             })
-            .catch((err) => console.log(err));
     }
 
     render() {

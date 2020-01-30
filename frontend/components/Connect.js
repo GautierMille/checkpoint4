@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, TextInput, View, Button, TouchableOpacity, Text } from 'react-native';
 import axios from 'axios';
+import { connect } from 'react-redux'
 
 class Connect extends React.Component {
     constructor(props) {
@@ -8,15 +9,15 @@ class Connect extends React.Component {
         this.state = {
             email: null,
             password: null,
-            navigate: this.props.navigation.navigate
+            navigate: this.props.navigation.navigate,
+            user_id: null
         }
     }
     connectAccount() {
         axios.post(`http://192.168.1.150:5050/auth/log`, this.state).then(response => {
-            console.log("ok")
+            this.props.getId(response.data.user.id)
             this.state.navigate('Home')
         })
-            .catch((err) => console.log(err));
     }
     goToCreateAccount() {
         this.state.navigate('AccountCreation')
@@ -47,7 +48,15 @@ class Connect extends React.Component {
         )
     }
 }
-export default Connect
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getId: (id) => dispatch({ type: "LOG", value: id })
+    }
+}
+
+
+export default connect(null, mapDispatchToProps)(Connect)
 
 const styles = StyleSheet.create({
     container: {

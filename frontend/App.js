@@ -7,6 +7,11 @@ import Connect from './components/Connect';
 import PackageDetail from './components/PackageDetail';
 import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+import reducer from './store/reducer'
+
+const store = createStore(reducer)
 
 const Navigator = createStackNavigator({
   Connect: { screen: Connect },
@@ -18,10 +23,11 @@ const Navigator = createStackNavigator({
 
 const Navigation = createAppContainer(Navigator)
 
-
 export default function App() {
   return (
-    <Navigation />
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
   );
 }
 
